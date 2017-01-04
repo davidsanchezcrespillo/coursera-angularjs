@@ -3,11 +3,11 @@
 
 angular.module('NarrowItDownApp', [])
 .controller('NarrowItDownController', NarrowItDownController)
-.service('MenuSearchService', MenuSearchService)
-.directive('foundItems', FoundItems);
+.service('MenuSearchService', MenuSearchService);
+//.directive('foundItems', FoundItems);
 
 NarrowItDownController.$inject = ['MenuSearchService'];
-function NarrowItDownController() {
+function NarrowItDownController(MenuSearchService) {
   var mv = this;
 
   mv.found = [];
@@ -15,9 +15,15 @@ function NarrowItDownController() {
   mv.removeItem = function(index) {
     
   }
+
+  mv.getMatchedMenuItems = function(searchTerm) {
+    return MenuSearchService.getMatchedMenuItems(searchTerm);
+  }
+
 }
 
-function MenuSearchService() {
+MenuSearchService.$inject = ['$http'];
+function MenuSearchService($http) {
   this.getMatchedMenuItems = function(searchTerm) {
     var endPointUrl = "https://davids-restaurant.herokuapp.com/menu_items.json";
     return $http(endPointUrl).then(function (result) {
@@ -31,16 +37,23 @@ function MenuSearchService() {
   };
 }
 
+/*
 function FoundItems() {
   var ddo = {
     templateUrl: 'foundItems.html',
 	scope: {
       found: '<',
 	  onRemove: '&'
-	}
+	},
+	controller: FoundItemsDirectiveController,
+	controllerAs: 'foundMenuItems',
+	bindToController: true
   };
   
   return ddo;
 }
 
+function FoundItemsDirectiveController() {
+}
+*/
 })();
