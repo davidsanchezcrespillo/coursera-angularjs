@@ -9,8 +9,12 @@ angular.module('NarrowItDownApp', [])
 NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController() {
   var mv = this;
-  
+
   mv.found = [];
+
+  mv.removeItem = function(index) {
+    
+  }
 }
 
 function MenuSearchService() {
