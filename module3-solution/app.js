@@ -16,7 +16,7 @@ function NarrowItDownController(MenuSearchService) {
   mv.found = [];
 
   mv.removeItem = function(index) {
-    
+    mv.found.splice(index, 1);
   }
 
   mv.getMatchedMenuItems = function() {
@@ -51,7 +51,7 @@ function MenuSearchService($http, ApiBasePath) {
   serv.processMenuItems = function(menuItems, searchTerm) {
     console.log("Search: " + searchTerm);
     if (searchTerm === "") {
-      return menuItems;
+      return [];
     }
 
     var found = [];

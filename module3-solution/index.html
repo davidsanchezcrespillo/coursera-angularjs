@@ -21,9 +21,10 @@
 
     <!-- found-items should be implemented as a component -->
     <div>
+    <div ng-if="list.found.length === 0">Nothing found</div>
     <ul>
       <li ng-repeat="item in list.found">
-        {{ item.name }} - {{ item.description }} <button ng-click="list.removeItem({index: $index});">I don't want this!</button>
+        <b>{{ item.name }}</b> ({{ item.short_name }}) - {{ item.description }} <button ng-click="list.removeItem($index);">I don't want this!</button>
       </li>
     </ul>
     </div>
