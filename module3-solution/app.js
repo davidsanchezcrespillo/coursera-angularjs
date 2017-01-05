@@ -5,8 +5,11 @@ angular.module('NarrowItDownApp', [])
 .controller('NarrowItDownController', NarrowItDownController)
 .constant('ApiBasePath', 'https://davids-restaurant.herokuapp.com/')
 .service('MenuSearchService', MenuSearchService)
-.directive('foundItems', FoundItems);
+.directive('foundItems', FoundItemsDirective);
 
+/**
+ * Controller.
+ */
 NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var mv = this;
@@ -23,11 +26,15 @@ function NarrowItDownController(MenuSearchService) {
     var foundPromise = MenuSearchService.getMatchedMenuItems(mv.searchTerm);
     foundPromise.then(function(result) {
       mv.found = result;
+      console.log(mv.found);
     });
   }
 
 }
 
+/**
+ * Service.
+ */
 MenuSearchService.$inject = ['$http', 'ApiBasePath'];
 function MenuSearchService($http, ApiBasePath) {
   var serv = this;
@@ -42,14 +49,12 @@ function MenuSearchService($http, ApiBasePath) {
       // process result and only keep items that match
       var foundItems = serv.processMenuItems(result.data.menu_items, searchTerm);
 
-      //console.log(foundItems);
       // return processed items
       return foundItems;
     });    
   };
   
   serv.processMenuItems = function(menuItems, searchTerm) {
-    console.log("Search: " + searchTerm);
     if (searchTerm === "") {
       return [];
     }
@@ -65,25 +70,20 @@ function MenuSearchService($http, ApiBasePath) {
   };
 }
 
-function FoundItems() {
+/**
+ * Directive.
+ */
+function FoundItemsDirective() {
   var ddo = {
     templateUrl: 'foundItems.html',
-    /*scope: {
-      found: '<',
+    scope: {
+      items: '<',
       onRemove: '&'
-    },
-    */
-    /*
-    controller: FoundItemsDirectiveController,
-    controllerAs: 'foundMenuItems',
-    bindToController: true
-    */
+    }
+
   };
 
   return ddo;
-}
-
-function FoundItemsDirectiveController() {
 }
 
 })();
