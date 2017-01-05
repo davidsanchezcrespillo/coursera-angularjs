@@ -20,31 +20,48 @@ function NarrowItDownController(MenuSearchService) {
   }
 
   mv.getMatchedMenuItems = function() {
-    mv.found = MenuSearchService.getMatchedMenuItems(mv.searchTerm);
+    var foundPromise = MenuSearchService.getMatchedMenuItems(mv.searchTerm);
+    foundPromise.then(function(result) {
+      mv.found = result;
+    });
   }
 
 }
 
 MenuSearchService.$inject = ['$http', 'ApiBasePath'];
 function MenuSearchService($http, ApiBasePath) {
-  this.getMatchedMenuItems = function(searchTerm) {
+  var serv = this;
+
+  serv.getMatchedMenuItems = function(searchTerm) {
     var endPointUrl = ApiBasePath + "menu_items.json";
-	var response = $http({
+    var response = $http({
       method: "GET",
-	  url: endPointUrl
-	});
+      url: endPointUrl
+    });
     return response.then(function (result) {
       // process result and only keep items that match
-      var foundItems = this.processMenuItems(result.data.menu_items, searchTerm);
+      var foundItems = serv.processMenuItems(result.data.menu_items, searchTerm);
 
-	  console.log(foundItems);
+      //console.log(foundItems);
       // return processed items
       return foundItems;
     });    
   };
   
-  this.processMenuItems = function(menuItems, searchTerm) {
-    return menuItems;
+  serv.processMenuItems = function(menuItems, searchTerm) {
+    console.log("Search: " + searchTerm);
+    if (searchTerm === "") {
+      return menuItems;
+    }
+
+    var found = [];
+    menuItems.forEach(function(element) {
+      if (element.description.indexOf(searchTerm) != -1) {
+        found.push(element);
+      }
+    });
+
+    return found;
   };
 }
 
