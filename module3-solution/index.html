@@ -19,16 +19,20 @@
     </div>
     </div>
 
-    <!-- found-items should be implemented as a component -->
+    <!-- found-items should be implemented as a component 
     <div>
-    <div ng-if="list.found.length === 0">Nothing found</div>
+    <div ng-if="list.searchTerm === '' || list.found.length === 0">Nothing found</div>
     <ul>
       <li ng-repeat="item in list.found">
         <b>{{ item.name }}</b> ({{ item.short_name }}) - {{ item.description }} <button ng-click="list.removeItem($index);">I don't want this!</button>
       </li>
     </ul>
     </div>
-    <found-items found-items="list.found" on-remove="list.removeItem(index)"></found-items>
+-->
+    <!--
+    <found-items items="list.found" on-remove="list.removeItem(index)"></found-items>
+    -->
+    <found-items></found-items>
   </div>
 
   <script src="angular.js"></script>
