@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  // Routes of the application.
+
   angular.module("MenuApp")
   .config(RoutesConfig);
 
@@ -11,9 +13,19 @@
     .otherwise('/');
 
     $stateProvider
-    .state('view1', {
+    .state('home', {
       url: '/',
-      templateUrl: 'view1.html'
+      templateUrl: 'templates/home.html'
+    })
+
+    .state('categories', {
+      url: '/categories',
+      templateUrl: 'templates/categories.html'
+    })
+
+    .state('items', {
+      url: '/items',
+      templateUrl: 'templates/items.html'
     });
   }
 
