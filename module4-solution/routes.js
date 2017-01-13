@@ -23,13 +23,12 @@
     .state('categories', {
       url: '/categories',
       templateUrl: 'templates/categories.html',
-      controller: 'CategoriesController as categoriescontroller'
-      //resolve: {
-        //categoriesList: ['MenuDataService', function(menuDataService) {
-        //  return menuDataService.getAllCategories();
-        //}]
-        //categoriesList: ['one', 'two']
-      //}
+      controller: 'CategoriesController as categoriescontroller',
+      resolve: {
+        categoriesList: ['MenuDataService', function(MenuDataService) {
+          return MenuDataService.getAllCategories();
+        }]
+      }
     })
 
     .state('items', {
@@ -39,38 +38,27 @@
       resolve: {
         category: ['$stateParams', function($stateParams) {
           return $stateParams.category;
+        }],
+        itemsList: ['MenuDataService', '$stateParams', function(MenuDataService, $stateParams) {
+          return MenuDataService.getItemsForCategory($stateParams.category);
         }]
       }
     });
   }
 
   // Inject the data retrieved by the service into the CategoriesController.
-  CategoriesController.$inject = ['MenuDataService'];
-  function CategoriesController(MenuDataService) {
+  CategoriesController.$inject = ['categoriesList'];
+  function CategoriesController(categoriesList) {
     var ctrl = this;
-    var categoriesPromise = MenuDataService.getAllCategories();
-    categoriesPromise.then(function(result) {
-      ctrl.categoriesList = result.data;
-      console.log(ctrl.categoriesList);
-    },
-    function(reason) {
-      console.log("getAllCategories failed: ", reason);
-    });
+    ctrl.categoriesList = categoriesList.data;
   }
 
   // Inject the data retrieved by the service into the ItemsController.
-  ItemsController.$inject = ['MenuDataService', 'category'];
-  function ItemsController(MenuDataService, category) {
+  ItemsController.$inject = ['category', 'itemsList'];
+  function ItemsController(category, itemsList) {
     var ctrl = this;
     console.log("Category is ", category);
     ctrl.category = category;
-    var itemsPromise = MenuDataService.getItemsForCategory(category);
-    itemsPromise.then(function(result) {
-      ctrl.itemsList = result.data.menu_items;
-      console.log('Items list:' , ctrl.itemsList);
-    },
-    function(reason) {
-      console.log("getItemsForCategory failed: ", reason);
-    });
+    ctrl.itemsList = itemsList.data.menu_items;
   }
 }) ();
