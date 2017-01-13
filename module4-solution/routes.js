@@ -9,15 +9,19 @@
   RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
   function RoutesConfig($stateProvider, $urlRouterProvider) {
 
+    // Default route
     $urlRouterProvider
     .otherwise('/');
 
     $stateProvider
+
+    // Home route
     .state('home', {
       url: '/',
       templateUrl: 'templates/home.html'
     })
 
+    // Categories
     .state('categories', {
       url: '/categories',
       templateUrl: 'templates/categories.html',
@@ -29,6 +33,7 @@
       }
     })
 
+    // Items of a given category
     .state('items', {
       url: '/items/{category}',
       templateUrl: 'templates/items.html',

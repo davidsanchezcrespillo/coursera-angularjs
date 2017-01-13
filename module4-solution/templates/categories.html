@@ -2,10 +2,4 @@
 
 <p><a ui-sref="home">Back to the home page</a></p>
 
-<ul>
-<li ng-repeat="item in categoriescontroller.categoriesList">
-<a ui-sref="items({ category: item.short_name })">{{item.name }} ({{ item.short_name }})</a>
-</li>
-</ul>
-
-<categories></categories>
+<categories items="categoriescontroller.categoriesList"></categories>
