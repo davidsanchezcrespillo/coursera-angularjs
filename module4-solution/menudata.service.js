@@ -11,10 +11,26 @@
 
     // Retrieval of all categories
     service.getAllCategories = function() {
+      var endPointUrl = 'https://davids-restaurant.herokuapp.com/categories.json';
+      var response = $http({
+        method: "GET",
+        url: endPointUrl
+      });
+
+      return response;
     };
 
     // Retrieval of all items of a given category
     service.getItemsForCategory = function(categoryShortName) {
+	  var endPointUrl = 'https://davids-restaurant.herokuapp.com/menu_items.json?category=';
+      var response = $http({
+        method: "GET",
+        url: endPointUrl,
+        params: {
+          category: categoryShortName
+        }
+      });
+      return response;
     };
   }
 }) ();
