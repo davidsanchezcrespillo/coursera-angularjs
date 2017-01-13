@@ -1,2 +1,8 @@
-<h2>Items</h2>
+<h2>Items for category {{ itemscontroller.category }}</h2>
 
+<ul>
+<li ng-repeat="item in itemscontroller.itemsList">
+{{item.name }} ({{ item.short_name }}): {{ item.description }}
+</li>
+</ul>
+<!--<items></items>-->

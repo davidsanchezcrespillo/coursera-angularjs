@@ -22,7 +22,7 @@
 
     // Retrieval of all items of a given category
     service.getItemsForCategory = function(categoryShortName) {
-	  var endPointUrl = 'https://davids-restaurant.herokuapp.com/menu_items.json?category=';
+	  var endPointUrl = 'https://davids-restaurant.herokuapp.com/menu_items.json';
       var response = $http({
         method: "GET",
         url: endPointUrl,
