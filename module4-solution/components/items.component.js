@@ -1,9 +1,10 @@
 (function () {
   'use strict';
 
-  // Categories component.
+  // Items component.
   angular.module('MenuApp')
-  .component('categories', {
+  .component('items', {
+    templateUrl: 'components/itemsComponent.html',
     bindings: {
       items: '<'
     }
