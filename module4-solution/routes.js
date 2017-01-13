@@ -62,6 +62,7 @@
   ItemsController.$inject = ['MenuDataService', 'category'];
   function ItemsController(MenuDataService, category) {
     var ctrl = this;
+    console.log("Category is ", category);
     ctrl.category = category;
     var itemsPromise = MenuDataService.getItemsForCategory(category);
     itemsPromise.then(function(result) {
