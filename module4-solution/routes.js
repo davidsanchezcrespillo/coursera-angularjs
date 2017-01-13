@@ -4,9 +4,7 @@
   // Routes of the application.
 
   angular.module("MenuApp")
-  .config(RoutesConfig)
-  .controller('CategoriesController', CategoriesController)
-  .controller('ItemsController', ItemsController);
+  .config(RoutesConfig);
 
   RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
   function RoutesConfig($stateProvider, $urlRouterProvider) {
@@ -46,19 +44,4 @@
     });
   }
 
-  // Inject the data retrieved by the service into the CategoriesController.
-  CategoriesController.$inject = ['categoriesList'];
-  function CategoriesController(categoriesList) {
-    var ctrl = this;
-    ctrl.categoriesList = categoriesList.data;
-  }
-
-  // Inject the data retrieved by the service into the ItemsController.
-  ItemsController.$inject = ['category', 'itemsList'];
-  function ItemsController(category, itemsList) {
-    var ctrl = this;
-    console.log("Category is ", category);
-    ctrl.category = category;
-    ctrl.itemsList = itemsList.data.menu_items;
-  }
 }) ();
