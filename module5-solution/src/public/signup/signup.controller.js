@@ -4,10 +4,8 @@
   angular.module('public')
   .controller('SignupController', SignupController);
             
-  MenuController.$inject = ['menuCategories'];
-  function MenuController(menuCategories) {
+  function SignupController() {
     var $ctrl = this;
-    $ctrl.menuCategories = menuCategories;
   }
                        
 })();
