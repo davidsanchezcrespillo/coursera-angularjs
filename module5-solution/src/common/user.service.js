@@ -6,7 +6,7 @@ angular.module('common')
 
 function UserService($http, ApiPath) {
   var service = this;
-  var service.userPreferences = null;
+  service.userPreferences = null;
 
   service.setUserPreferences = function (userPreferences) {
     service.userPreferences = userPreferences;
