@@ -3,9 +3,11 @@
 
   angular.module('public')
   .controller('MyInfoController', MyInfoController);
-            
-  function MyInfoController() {
+
+  MyInfoController.$inject = ['userPreferences'];
+  function MyInfoController(userPreferences) {
     var $ctrl = this;
+    $ctrl.userPreferences = userPreferences;
   }
                        
 })();
