@@ -4,10 +4,10 @@
   angular.module('public')
   .controller('MyInfoController', MyInfoController);
 
-  MyInfoController.$inject = ['userPreferences'];
-  function MyInfoController(userPreferences) {
+  MyInfoController.$inject = ['UserService'];
+  function MyInfoController(UserService) {
     var $ctrl = this;
-    $ctrl.userPreferences = userPreferences;
+    $ctrl.userPreferences = UserService.getUserPreferences();
   }
                        
 })();

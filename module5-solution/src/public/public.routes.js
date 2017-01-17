@@ -51,12 +51,7 @@ function routeConfig ($stateProvider) {
       url: '/myinfo',
       templateUrl: 'src/public/myinfo/myinfo.html',
       controller: 'MyInfoController',
-      controllerAs: 'myInfoCtrl',
-      resolve: {
-        userPreferences: ['UserService', function(UserService) {
-          return UserService.getUserPreferences();
-        }]
-      }
+      controllerAs: 'myInfoCtrl'
     });
 }
 })();

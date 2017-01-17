@@ -4,7 +4,6 @@
 angular.module('common')
 .service('UserService', UserService);
 
-UserService.$inject = ['$q'];
 function UserService() {
   var service = this;
   service.userPreferences = null;
@@ -13,15 +12,10 @@ function UserService() {
     service.userPreferences = userPreferences;
   };
 
-
   service.getUserPreferences = function () {
-    var deferred = $q.defer();
-    deferred.resolve(userPreferences);
-    return deferred.promise;
+    return service.userPreferences;
   };
 
 }
-
-
 
 })();
