@@ -4,7 +4,8 @@
 angular.module('common')
 .service('UserService', UserService);
 
-function UserService($http, ApiPath) {
+UserService.$inject = ['$q'];
+function UserService() {
   var service = this;
   service.userPreferences = null;
 
@@ -14,7 +15,9 @@ function UserService($http, ApiPath) {
 
 
   service.getUserPreferences = function () {
-    return service.userPreferences;
+    var deferred = $q.defer();
+    deferred.resolve(userPreferences);
+    return deferred.promise;
   };
 
 }
