@@ -18,3 +18,19 @@
 .ui-view-placeholder {
     margin-top: 60px;
 }
+
+legend {
+  color: #ffffff;
+}
+input {
+  color: #333333;
+  min-width: 350px;
+}
+
+button[class="submit"] {
+  color: #333333;
+}
+
+label {
+  min-width: 200px;
+}

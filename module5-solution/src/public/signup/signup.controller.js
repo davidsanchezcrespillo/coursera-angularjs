@@ -7,5 +7,5 @@
   function SignupController() {
     var $ctrl = this;
   }
-                       
+
 })();
