@@ -4,12 +4,11 @@
   angular.module('public')
   .controller('MyInfoController', MyInfoController);
 
-  MyInfoController.$inject = ['UserService', 'ApiPath'];
-  function MyInfoController(UserService, ApiPath) {
+  MyInfoController.$inject = ['userPreferences', 'ApiPath'];
+  function MyInfoController(userPreferences, ApiPath) {
     var $ctrl = this;
     $ctrl.basePath = ApiPath;
-    $ctrl.userPreferences = UserService.getUserPreferences();
-
+    $ctrl.userPreferences = userPreferences;
   }
 
 })();
