@@ -31,6 +31,10 @@ button[class="submit"] {
   color: #333333;
 }
 
+button[disabled="disabled"] {
+  color: #666666;
+}
+
 label {
   min-width: 200px;
 }

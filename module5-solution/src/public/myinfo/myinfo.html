@@ -1,4 +1,10 @@
 <div class="container">
 <h1>My Info</h1>
 <p ng-if="myInfoCtrl.userPreferences === null">Not signed up yet. <a ui-sref="signup">Sign up now!</a></p>
+<div ng-if="myInfoCtrl.userPreferences !== null">
+<p>Name: {{ myInfoCtrl.userPreferences.firstname }} {{ myInfoCtrl.userPreferences.lastname }}</p>
+<p>Email: {{ myInfoCtrl.userPreferences.email }}</p>
+<p>Phone: {{ myInfoCtrl.userPreferences.phone }}</p>
+<p>Favourite menu: {{ myInfoCtrl.userPreferences.menu_number }}</p>
+</div>
 </div>

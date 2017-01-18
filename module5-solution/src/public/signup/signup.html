@@ -2,12 +2,12 @@
 
 <fieldset>
 <legend>Sign up</legend>
-<form id="userpreferencesform" name="userpreferencesform" action="#" novalidate="novalidate">
+<form id="userpreferencesform" name="userpreferencesform" novalidate>
 
 <div class="form-group">
 <label for="firstname">First name:</label>
 <input type="text" name="firstname" placeholder="Enter your first name"
-  ng-model="$ctrl.user.firstname"
+  ng-model="signupCtrl.user.firstname"
   required
 >
 <span
@@ -19,7 +19,7 @@
 <div class="form-group">
 <label for="lastname">Last name:</label>
 <input type="text" name="lastname" placeholder="Enter your last name"
-  ng-model="$ctrl.user.lastname"
+  ng-model="signupCtrl.user.lastname"
   required
 >
 <span
@@ -31,7 +31,7 @@
 <div class="form-group">
 <label for="email">Email:</label>
 <input type="email" name="email" placeholder="Enter your email"
-  ng-model="$ctrl.user.email"
+  ng-model="signupCtrl.user.email"
   required
 >
 <span
@@ -43,7 +43,7 @@
 <div class="form-group">
 <label for="phone">Phone number:</label>
 <input type="text" name="phone" placeholder="###-###-####"
-  ng-model="$ctrl.user.phone"
+  ng-model="signupCtrl.user.phone"
   pattern="(\d{3})-(\d{3})-(\d{4})"
   required
 >
@@ -55,7 +55,7 @@
 <div class="form-group">
 <label for="menu_number">Menu number:</label>
 <input type="text" name="menu_number" placeholder="Enter the number of your favourite dish"
-  ng-model="$ctrl.user.menu_number"
+  ng-model="signupCtrl.user.menu_number"
   required
 >
 <span
@@ -66,11 +66,16 @@
 
 <div class="form-group">
 <button
+  class="submit"
   ng-disabled="userpreferencesform.$invalid"
-  ng-click="$ctrl.submit()">Submit</button>
+  ng-click="signupCtrl.submit()">Submit</button>
 </div>
 
 </form>
 </fieldset>
+
+<div class="container bg-primary" ng-if="signupCtrl.submitted === true">
+Your information has been saved
+</div>
 
 </div>

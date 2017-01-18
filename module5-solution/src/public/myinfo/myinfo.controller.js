@@ -9,5 +9,5 @@
     var $ctrl = this;
     $ctrl.userPreferences = UserService.getUserPreferences();
   }
-                       
+
 })();
