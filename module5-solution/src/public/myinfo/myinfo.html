@@ -2,9 +2,18 @@
 <h1>My Info</h1>
 <p ng-if="myInfoCtrl.userPreferences === null">Not signed up yet. <a ui-sref="signup">Sign up now!</a></p>
 <div ng-if="myInfoCtrl.userPreferences !== null">
+<div class="row">
+<div class="col-md-6">
 <p>Name: {{ myInfoCtrl.userPreferences.firstname }} {{ myInfoCtrl.userPreferences.lastname }}</p>
 <p>Email: {{ myInfoCtrl.userPreferences.email }}</p>
 <p>Phone: {{ myInfoCtrl.userPreferences.phone }}</p>
-<p>Favourite menu: {{ myInfoCtrl.userPreferences.menu_number }}</p>
+</div>
+<div class="col-md-6">
+<p>Favourite menu: {{ myInfoCtrl.userPreferences.favorite.name }}</p>
+<p>{{ myInfoCtrl.userPreferences.favorite.description }}</p>
+
+<img class="img-responsive" src="{{myInfoCtrl.basePath}}/images/{{myInfoCtrl.userPreferences.favorite.short_name}}.jpg" width="250" height="150" alt="{{myInfoCtrl.userPreferences.favorite.name}}">
+</div>
+</div>
 </div>
 </div>

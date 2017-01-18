@@ -11,10 +11,12 @@
     $ctrl.user = UserService.getUserPreferences();
 
     $ctrl.submit = function() {
-      UserService.setUserPreferences($ctrl.user);
       var short_name = $ctrl.user.menu_number;
       $http.get(ApiPath + '/menu_items/' + short_name + '.json')
-      .success(function() {
+      .success(function(result) {
+        console.log(result);
+        $ctrl.user.favorite = result;
+        UserService.setUserPreferences($ctrl.user);
         $ctrl.submitted = true;
         $ctrl.noSuchMenu = false;
       })
